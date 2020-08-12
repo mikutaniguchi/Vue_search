@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>牛探し</title>
+  </head>
+  <body>
+    <div id="app">
+      <form>
+        <input type="text" v-model="inputUshiId" />
+        <button @click.stop.prevent="searchUshi">牛を探す</button>
+      </form>
+      <ul class="ushi-list" v-if="resultUshiList.length">
+        <li v-for="(ushi, index) in resultUshiList" :key="index">
+          <p>ID: <span class="ushi-id">{{ ushi.id }}</span></p>
+          <p>名前: {{ ushi.name }}</p>
+          <p>年齢: {{ ushi.age }}</p>
+          <button @click="copyUshiId(ushi.id, index)">IDをコピー</button>
+          <p class="doneCopiedMessage">コピー完了！</p>
+        </li>
+      </ul>
+      <div v-if="error">
+        <p>検索した牛は存在しません.</p>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
